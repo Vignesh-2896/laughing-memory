@@ -45,7 +45,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-var mongodb = "mongodb+srv://m001-student:m001-mongodb-basics@cluster0.y9qpd.mongodb.net/localLibrary?retryWrites=true&w=majority"
+var dev_db_url = "mongodb+srv://m001-student:m001-mongodb-basics@cluster0.y9qpd.mongodb.net/localLibrary?retryWrites=true&w=majority"
+var mongodb = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongodb, { useNewUrlParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
